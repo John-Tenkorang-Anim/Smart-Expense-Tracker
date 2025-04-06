@@ -4,9 +4,16 @@ from flask_cors import CORS
 from db import DatabaseDriver
 from ml_model import train_model, predict_category, evaluate_model
 from plaid_api import get_transactions
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'my_secret_key'
+load_dotenv('plaid.env')
+
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+if not app.config['JWT_SECRET_KEY']:
+    raise ValueError("JWT_SECRET_KEY is not set in the environment variables")
+
 jwt = JWTManager(app)
 CORS(app)
 
@@ -52,7 +59,6 @@ def add_transaction():
 
 @app.route("/transactions/<int:user_id>", methods=["GET"])
 @jwt_required()
-@app.route("/fetch_transactions", methods=["POST"])
 def fetch_transactions():
     data = request.json
     access_token = data.get("access_token")

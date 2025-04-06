@@ -91,7 +91,7 @@ class DatabaseDriver:
         except Exception as e:
             print(e)
     
-    def register_user(username, password):
+    def register_user(self,username, password):
         """
         This function helps to register a new user
         """
@@ -102,7 +102,7 @@ class DatabaseDriver:
         conn.commit()
         conn.close()
     
-    def login_user(username, password):
+    def login_user(self,username, password):
         """
         handles the user logins
         """
@@ -116,7 +116,7 @@ class DatabaseDriver:
             return user[0] 
         return None 
     
-    def add_transaction(user_id, amount, category, description):
+    def add_transaction(self,user_id, amount, category, description):
         """
         This method adds a transaction to the table +
         """
@@ -127,7 +127,7 @@ class DatabaseDriver:
         conn.commit()
         conn.close()
 
-    def get_transactions(user_id):
+    def get_transactions(self,user_id):
         """
         Function to get all transactions done by a user
         """
@@ -138,7 +138,7 @@ class DatabaseDriver:
         conn.close()
         return transactions
     
-    def delete_transaction(transaction_id):
+    def delete_transaction(self,transaction_id):
         """
         Function that deletes a transaction
         """
@@ -148,7 +148,7 @@ class DatabaseDriver:
         conn.commit()
         conn.close()   
 
-    def set_budget(user_id, category, limit_amount):
+    def set_budget(self,user_id, category, limit_amount):
         """
         Function that handles setting of budget by a user
         """
@@ -177,7 +177,7 @@ class DatabaseDriver:
             return True 
         return False 
     
-    def store_receipt(user_id, transaction_id, file_path):
+    def store_receipt(self,user_id, transaction_id, file_path):
         """
         This function will help to store receipts
         """
@@ -191,7 +191,7 @@ class DatabaseDriver:
             conn.close()
 
 
-    def get_receipt(transaction_id):
+    def get_receipt(self,transaction_id):
         """
         This function allows us to retrieve a receipt from a file path
         """
