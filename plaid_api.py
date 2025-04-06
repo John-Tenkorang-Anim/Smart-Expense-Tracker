@@ -22,11 +22,11 @@ PLAID_CLIENT_ID = os.getenv("PLAID_CLIENT_ID")
 PLAID_SECRET = os.getenv("PLAID_SECRET")
 PLAID_ENV = os.getenv("PLAID_ENV", "sandbox")  # 'sandbox', 'development', or 'production'
 
-host = Environment.SANDBOX
+host = Environment.Sandbox
 if PLAID_ENV == "development":
-    host = Environment.DEVELOPMENT
+    host = Environment.Development
 elif PLAID_ENV == "production":
-    host = Environment.PRODUCTION
+    host = Environment.Production
 
 configuration = Configuration(
     host=host,
