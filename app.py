@@ -39,8 +39,10 @@ def login():
     password = data["password"]
     
     user_id = db.login_user(username, password)
+    print("Login attempt - Username:", username, "User ID:", user_id)
     if user_id:
         access_token = create_access_token(identity=user_id)
+        print("Generated access_token:", access_token)
         return jsonify({"access_token": access_token}), 200
     return jsonify({"error": "Invalid credentials"}), 401
 
